@@ -11,10 +11,13 @@ Apasionado por crear soluciones digitales integrales que combinan código, dise�
 ## 🚀 Sobre mí
 
 Soy **Desarrollador Full Stack** con formación como **Tecnólogo en Desarrollo Multimedia y Web**, complementado con estudios en **Análisis y visualizacion de Datos y Big Data**.
+Desarrollador Full Stack con formación en desarrollo de software y multimedia, y experiencia en la creación de aplicaciones web completas, desde el frontend hasta el backend. Trabajo con tecnologías como JavaScript, Node.js y frameworks modernos, integrando soluciones eficientes, escalables y centradas en el usuario.
 
-Me apasiona crear soluciones digitales completas, desde el diseño visual hasta el desarrollo backend. Manejo herramientas modernas para la web, así como técnicas de análisis de datos para transformar información en decisiones estratégicas.  
+Cuento con estudios en Análisis de Datos y Big Data, lo que me permite aplicar enfoques basados en datos para la toma de decisiones, visualización de información y optimización de procesos. Actualmente me desempeño como Analista de Datos en una empresa de Growth Marketing, donde aplico metodologías de analítica digital para impulsar estrategias de posicionamiento, segmentación y crecimiento empresarial.
 
-Actualmente me enfoco en desarrollar proyectos que combinan diseño interactivo, lógica de programación, y visualización de datos, buscando siempre generar impacto positivo desde la tecnología.
+Soy también CEO y fundador de Favela Films, productora audiovisual especializada en deporte y cultura, donde combino mi visión tecnológica con la narrativa visual para crear contenidos con calidad cinematográfica que potencian la comunicación de artistas, marcas y comunidades.
+
+Me caracterizo por mi compromiso, adaptabilidad y pasión por construir herramientas tecnológicas, proyectos audiovisuales y estrategias basadas en datos con impacto real en el entorno social y productivo. Poseo habilidades interpersonales que fomentan el trabajo en equipo, así como una mentalidad proactiva orientada al aprendizaje constante y la innovación tecnológica.
 
 ---
 
