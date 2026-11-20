@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Barra de Navegación -->
+    <!-- Barra de Navegación Fija y Responsiva -->
     <header>
         <nav class="navbar" id="navbar" aria-label="Navegación principal">
             <div class="nav-container">
@@ -32,7 +32,7 @@
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="#home" class="nav-link active">Inicio</a></li>
-                    <li><a href="#solutions" class="nav-link">Soluciones</a></li>
+                    <li><a href="#solutions" class="nav-link">Servicios</a></li>
                     <li><a href="#projects" class="nav-link">Proyectos</a></li>
                     <li><a href="#experience" class="nav-link">Experiencia</a></li>
                     <li><a href="#about" class="nav-link">Sobre Mí</a></li>
@@ -49,9 +49,8 @@
     </header>
 
     <main>
-        <!-- Hero Section con Formas Flotantes, Typewriter y Foto Circular con Glow -->
+        <!-- 1. Inicio: Hero Section con Video Orgánico (Sin círculo rígido, con CSS Masking y Ambient Glow) -->
         <section id="home" class="hero">
-            <!-- Animación de formas flotantes de fondo -->
             <div class="hero-bg-animation" aria-hidden="true">
                 <div class="floating-shapes">
                     <div class="shape shape-1"></div>
@@ -98,40 +97,41 @@
                             </a>
                         </div>
 
-                        <!-- Redes Sociales Principales en orden estricto -->
+                        <!-- Redes Sociales Principales con Jerarquía Profesional: LinkedIn, GitHub y WhatsApp -->
                         <div class="hero-socials">
-                            <span class="hero-socials-label">Conecta:</span>
-                            <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" class="social-chip chip-linkedin" aria-label="LinkedIn">
-                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                            <span class="hero-socials-label">Canales Directos:</span>
+                            <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" class="social-chip chip-linkedin priority-chip" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i> <span>LinkedIn</span>
                             </a>
-                            <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-github" aria-label="GitHub">
-                                <i class="fab fa-github"></i> GitHub
+                            <a href="https://github.com/ErickJarias" target="_blank" rel="noopener noreferrer" class="social-chip chip-github priority-chip" aria-label="GitHub">
+                                <i class="fab fa-github"></i> <span>GitHub</span>
+                            </a>
+                            <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer" class="social-chip chip-whatsapp priority-chip" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
                             </a>
                             <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-instagram" aria-label="Instagram">
-                                <i class="fab fa-instagram"></i> Instagram
-                            </a>
-                            <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-facebook" aria-label="Facebook">
-                                <i class="fab fa-facebook-f"></i> Facebook
+                                <i class="fab fa-instagram"></i> <span>Instagram</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Avatar en Movimiento / Foto Circular con Resplandor Animado -->
-                    <div class="hero-image reveal">
-                        <div class="image-container">
-                            <video id="profileMedia" class="profile-img profile-video" autoplay loop muted playsinline poster="EricArias.png">
-                                <source src="avatar-motion.mp4" type="video/mp4">
-                                <source src="avatar-motion.webm" type="video/webm">
-                                <img src="EricArias.png" alt="Erick Arias" class="profile-img" id="fallbackProfileImg">
-                            </video>
-                            <div class="image-glow"></div>
+                    <!-- Rediseño del Video en el Hero: Formato vertical orgánico fundido con el fondo mediante CSS Masking -->
+                    <div class="hero-image-col reveal">
+                        <div class="hero-video-wrapper">
+                            <div class="hero-video-glow" aria-hidden="true"></div>
+                            <div class="hero-video-mask">
+                                <video id="profileMedia" class="hero-video" autoplay loop muted playsinline poster="EricArias.png" preload="auto">
+                                    <source src="avatar-motion.mp4" type="video/mp4">
+                                    <img src="EricArias.png" alt="Erick Arias - Full Stack Developer & Sports Tech Innovator" class="hero-fallback-img">
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN DE SOLUCIONES (Enfoque Comercial: ¿Cómo te puedo ayudar?) -->
+        <!-- 2. Servicios: ¿Cómo Puedo Ayudarte? -->
         <section id="solutions" class="solutions section-padding">
             <div class="container">
                 <div class="section-header reveal">
@@ -203,8 +203,8 @@
                         <ul class="solution-features">
                             <li><i class="fas fa-check"></i> Aplicaciones web interactivas (React / JavaScript ES6+)</li>
                             <li><i class="fas fa-check"></i> Backends y APIs RESTful con Node.js y Express</li>
-                            <li><i class="fas fa-check"></i> Bases de datos relacionales optimizadas (MySQL / PostgreSQL)</li>
-                            <li><i class="fas fa-check"></i> Despliegue global en la nube (Cloudflare Pages / Vercel)</li>
+                            <li><i class="fas fa-check"></i> Bases de datos optimizadas (PostgreSQL / MySQL)</li>
+                            <li><i class="fas fa-check"></i> Despliegue global en Cloudflare Workers &amp; Pages</li>
                         </ul>
                         <div class="solution-footer">
                             <a href="#contact" class="btn-solution">
@@ -216,7 +216,7 @@
             </div>
         </section>
 
-        <!-- Proyectos Destacados (Con Filtro Interactivo y Spotlight) -->
+        <!-- 3. Proyectos: Creaciones & Proyectos (Con Filtro, Fallback Visual Elegante y CTAs Claros) -->
         <section id="projects" class="projects section-padding">
             <div class="container">
                 <div class="section-header reveal">
@@ -244,12 +244,15 @@
                     </button>
                 </div>
 
-                <!-- Grid de Tarjetas de Proyectos con Spotlight -->
+                <!-- Grid de Tarjetas de Proyectos con CTAs Dobles y Fallback Visual -->
                 <div class="projects-grid" id="projectsGrid">
-                    <!-- 1. Futea Sports Tech -->
+                    <!-- 1. Futea Sports Tech Platform -->
                     <article class="project-card spotlight-card reveal" data-category="sports-tech full-stack">
                         <div class="project-image-wrapper">
-                            <img src="assets/images/futea-platform.svg" alt="Futea Sports Tech Platform" class="project-img" loading="lazy">
+                            <div class="project-fallback-bg" aria-hidden="true">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <img src="assets/images/futea-platform.svg" alt="Futea Sports Tech Platform" class="project-img" loading="lazy" onerror="this.classList.add('img-error');">
                             <div class="project-badge status-prod">
                                 <i class="fas fa-star"></i> Insignia
                             </div>
@@ -271,8 +274,12 @@
                                 <span class="tech-tag">APIs</span>
                             </div>
                             <div class="project-actions">
-                                <a href="#contact" class="btn-card-link">Conocer Más <i class="fas fa-arrow-right"></i></a>
-                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#contact" class="btn-card-primary">
+                                    <i class="fas fa-bolt"></i> Ver Demo
+                                </a>
+                                <a href="https://github.com/ErickJarias/Portafolio_Erick" target="_blank" rel="noopener noreferrer" class="btn-card-secondary" aria-label="Código en GitHub">
+                                    <i class="fab fa-github"></i> Código
+                                </a>
                             </div>
                         </div>
                     </article>
@@ -280,7 +287,10 @@
                     <!-- 2. Futea Score -->
                     <article class="project-card spotlight-card reveal" data-category="sports-tech full-stack">
                         <div class="project-image-wrapper">
-                            <img src="assets/images/futea-score.svg" alt="Futea Score - Marcadores en tiempo real" class="project-img" loading="lazy">
+                            <div class="project-fallback-bg" aria-hidden="true">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                            <img src="assets/images/futea-score.svg" alt="Futea Score - Marcadores en tiempo real" class="project-img" loading="lazy" onerror="this.classList.add('img-error');">
                             <div class="project-badge status-live">
                                 <i class="fas fa-broadcast-tower"></i> Live Realtime
                             </div>
@@ -302,8 +312,12 @@
                                 <span class="tech-tag">CSS Grid</span>
                             </div>
                             <div class="project-actions">
-                                <a href="#contact" class="btn-card-link">Ver Demo <i class="fas fa-arrow-right"></i></a>
-                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#contact" class="btn-card-primary">
+                                    <i class="fas fa-play-circle"></i> Ver Demo
+                                </a>
+                                <a href="https://github.com/ErickJarias/Portafolio_Erick" target="_blank" rel="noopener noreferrer" class="btn-card-secondary" aria-label="Código en GitHub">
+                                    <i class="fab fa-github"></i> Código
+                                </a>
                             </div>
                         </div>
                     </article>
@@ -311,7 +325,10 @@
                     <!-- 3. Growth Marketing Analytics Dashboard -->
                     <article class="project-card spotlight-card reveal" data-category="data">
                         <div class="project-image-wrapper">
-                            <img src="assets/images/data-analytics.svg" alt="Dashboard de Growth Marketing" class="project-img" loading="lazy">
+                            <div class="project-fallback-bg" aria-hidden="true">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <img src="assets/images/data-analytics.svg" alt="Dashboard de Growth Marketing" class="project-img" loading="lazy" onerror="this.classList.add('img-error');">
                             <div class="project-badge status-case">
                                 <i class="fas fa-chart-line"></i> Analítica
                             </div>
@@ -323,7 +340,7 @@
                                 Pipeline de datos y tablero para análisis de embudos de conversión, retención por cohortes y optimización de CAC/LTV en campañas de crecimiento.
                             </p>
                             <div class="project-metrics">
-                                <span><i class="fas fa-arrow-up"></i> +<span class="count-up" data-target="24">24</span>.8% Conversión</span>
+                                <span><i class="fas fa-arrow-up"></i> +<span class="count-up" data-target="24.8" data-decimals="1">24.8</span>% Conversión</span>
                                 <span><i class="fas fa-database"></i> +<span class="count-up" data-target="180">180</span>K Eventos</span>
                             </div>
                             <div class="project-tech">
@@ -333,16 +350,23 @@
                                 <span class="tech-tag">Power BI</span>
                             </div>
                             <div class="project-actions">
-                                <a href="#contact" class="btn-card-link">Ver Métricas <i class="fas fa-arrow-right"></i></a>
-                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#contact" class="btn-card-primary">
+                                    <i class="fas fa-chart-pie"></i> Caso de Estudio
+                                </a>
+                                <a href="https://github.com/ErickJarias/Portafolio_Erick" target="_blank" rel="noopener noreferrer" class="btn-card-secondary" aria-label="Código en GitHub">
+                                    <i class="fab fa-github"></i> Código
+                                </a>
                             </div>
                         </div>
                     </article>
 
-                    <!-- 4. Sports Performance Big Data -->
+                    <!-- 4. Sports Performance Intelligence -->
                     <article class="project-card spotlight-card reveal" data-category="data sports-tech">
                         <div class="project-image-wrapper">
-                            <img src="assets/images/sports-analytics.svg" alt="Sports Performance Analytics" class="project-img" loading="lazy">
+                            <div class="project-fallback-bg" aria-hidden="true">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <img src="assets/images/sports-analytics.svg" alt="Sports Performance Analytics" class="project-img" loading="lazy" onerror="this.classList.add('img-error');">
                             <div class="project-badge status-ai">
                                 <i class="fas fa-brain"></i> Big Data
                             </div>
@@ -364,8 +388,12 @@
                                 <span class="tech-tag">Data Viz</span>
                             </div>
                             <div class="project-actions">
-                                <a href="#contact" class="btn-card-link">Ver Análisis <i class="fas fa-arrow-right"></i></a>
-                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="#contact" class="btn-card-primary">
+                                    <i class="fas fa-microscope"></i> Ver Análisis
+                                </a>
+                                <a href="https://github.com/ErickJarias/Portafolio_Erick" target="_blank" rel="noopener noreferrer" class="btn-card-secondary" aria-label="Código en GitHub">
+                                    <i class="fab fa-github"></i> Código
+                                </a>
                             </div>
                         </div>
                     </article>
@@ -373,7 +401,7 @@
             </div>
         </section>
 
-        <!-- Experiencia Profesional (3 Etapas Claras) -->
+        <!-- 4. Experiencia: Experiencia Profesional (3 Etapas Claras) -->
         <section id="experience" class="experience section-padding">
             <div class="container">
                 <div class="section-header reveal">
@@ -453,7 +481,7 @@
             </div>
         </section>
 
-        <!-- Sobre Mí & Habilidades Compacto con Contadores Animados -->
+        <!-- 5. Sobre Mí: Sobre Mí & Áreas Clave (Con React, PostgreSQL y Métricas Limpias) -->
         <section id="about" class="about section-padding">
             <div class="container">
                 <div class="section-header reveal">
@@ -492,10 +520,10 @@
                             </div>
                         </div>
 
-                        <!-- Métricas con Contadores Animados (Count-Up) -->
+                        <!-- Mini Métricas con Tabular Nums -->
                         <div class="mini-metrics">
                             <div class="mini-metric-item">
-                                <span class="mini-num count-up" data-target="3">3</span><span class="mini-plus">+</span>
+                                <span class="mini-num">+<span class="count-up" data-target="3">3</span></span>
                                 <span class="mini-lbl">Años de Exp.</span>
                             </div>
                             <div class="mini-metric-item">
@@ -503,13 +531,13 @@
                                 <span class="mini-lbl">Sports Tech</span>
                             </div>
                             <div class="mini-metric-item">
-                                <span class="mini-num count-up" data-target="180">180</span><span class="mini-plus">K+</span>
+                                <span class="mini-num">+<span class="count-up" data-target="180">180</span>K</span>
                                 <span class="mini-lbl">Eventos Analizados</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Columna Derecha: Stack de Habilidades Organizado -->
+                    <!-- Columna Derecha: Stack de Habilidades con React y PostgreSQL -->
                     <div class="skills-compact-col reveal">
                         <div class="skill-category-card spotlight-card">
                             <div class="cat-header">
@@ -517,12 +545,14 @@
                                 <h4>Desarrollo Web &amp; Full Stack</h4>
                             </div>
                             <div class="chips-container">
-                                <span class="skill-chip">HTML5 / CSS3</span>
-                                <span class="skill-chip">JavaScript (ES6+)</span>
+                                <span class="skill-chip chip-highlight">React</span>
+                                <span class="skill-chip chip-highlight">PostgreSQL</span>
                                 <span class="skill-chip">Node.js</span>
+                                <span class="skill-chip">JavaScript (ES6+)</span>
                                 <span class="skill-chip">Express</span>
                                 <span class="skill-chip">WebSockets</span>
                                 <span class="skill-chip">REST APIs</span>
+                                <span class="skill-chip">HTML5 / CSS3</span>
                                 <span class="skill-chip">Git / GitHub</span>
                             </div>
                         </div>
@@ -533,9 +563,9 @@
                                 <h4>Analítica de Datos &amp; Big Data</h4>
                             </div>
                             <div class="chips-container">
-                                <span class="skill-chip">Python</span>
+                                <span class="skill-chip chip-highlight">Python</span>
+                                <span class="skill-chip chip-highlight">SQL / PostgreSQL</span>
                                 <span class="skill-chip">Pandas / NumPy</span>
-                                <span class="skill-chip">SQL / MySQL</span>
                                 <span class="skill-chip">Growth Analytics</span>
                                 <span class="skill-chip">Dashboards BI</span>
                                 <span class="skill-chip">Visualización</span>
@@ -548,7 +578,7 @@
                                 <h4>Sports Tech &amp; Multimedia</h4>
                             </div>
                             <div class="chips-container">
-                                <span class="skill-chip">Futea Score Realtime</span>
+                                <span class="skill-chip chip-highlight">Futea Score Realtime</span>
                                 <span class="skill-chip">Marcadores Digitales</span>
                                 <span class="skill-chip">Streaming Deportivo</span>
                                 <span class="skill-chip">Producción Audiovisual</span>
@@ -559,7 +589,7 @@
             </div>
         </section>
 
-        <!-- Contacto Compacto y Funcional -->
+        <!-- 6. Contacto: Iniciemos un Proyecto (Con Prioridad en LinkedIn, GitHub y WhatsApp) -->
         <section id="contact" class="contact section-padding">
             <div class="container">
                 <div class="section-header reveal">
@@ -569,68 +599,70 @@
                 </div>
 
                 <div class="contact-grid">
-                    <!-- Canales Directos en orden -->
+                    <!-- Canales Directos con Jerarquía Profesional -->
                     <div class="contact-info-col reveal">
                         <h3>Canales Directos</h3>
                         <p>
-                            ¿Tienes una idea en tecnología deportiva, desarrollo web o análisis de datos? Conéctate directamente conmigo:
+                            ¿Tienes una idea en tecnología deportiva, desarrollo web o análisis de datos? Conéctate directamente conmigo a través de mis canales principales:
                         </p>
 
                         <div class="contact-cards-list">
-                            <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                            <!-- 1. LinkedIn -->
+                            <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" class="contact-card-item card-priority">
                                 <div class="contact-card-icon card-icon-linkedin"><i class="fab fa-linkedin-in"></i></div>
                                 <div class="contact-card-details">
-                                    <span class="contact-card-title">LinkedIn</span>
+                                    <span class="contact-card-title">LinkedIn Principal</span>
                                     <span class="contact-card-val">in/erick-arias-dev</span>
                                 </div>
+                                <span class="contact-card-badge"><i class="fas fa-external-link-alt"></i></span>
                             </a>
 
-                            <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                            <!-- 2. GitHub -->
+                            <a href="https://github.com/ErickJarias" target="_blank" rel="noopener noreferrer" class="contact-card-item card-priority">
                                 <div class="contact-card-icon card-icon-github"><i class="fab fa-github"></i></div>
                                 <div class="contact-card-details">
-                                    <span class="contact-card-title">GitHub</span>
-                                    <span class="contact-card-val">@tatanarias13</span>
+                                    <span class="contact-card-title">GitHub Perfil</span>
+                                    <span class="contact-card-val">github.com/ErickJarias</span>
                                 </div>
+                                <span class="contact-card-badge"><i class="fas fa-external-link-alt"></i></span>
                             </a>
 
-                            <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="contact-card-item">
-                                <div class="contact-card-icon card-icon-instagram"><i class="fab fa-instagram"></i></div>
-                                <div class="contact-card-details">
-                                    <span class="contact-card-title">Instagram</span>
-                                    <span class="contact-card-val">@tatanarias13</span>
-                                </div>
-                            </a>
-
-                            <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="contact-card-item">
-                                <div class="contact-card-icon card-icon-facebook"><i class="fab fa-facebook-f"></i></div>
-                                <div class="contact-card-details">
-                                    <span class="contact-card-title">Facebook</span>
-                                    <span class="contact-card-val">Erick Arias</span>
-                                </div>
-                            </a>
-
-                            <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20soluci%C3%B3n%20tecnol%C3%B3gica%20/%20Futea." target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                            <!-- 3. WhatsApp Directo -->
+                            <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20soluci%C3%B3n%20tecnol%C3%B3gica%20/%20Futea." target="_blank" rel="noopener noreferrer" class="contact-card-item card-priority">
                                 <div class="contact-card-icon card-icon-whatsapp"><i class="fab fa-whatsapp"></i></div>
                                 <div class="contact-card-details">
                                     <span class="contact-card-title">WhatsApp Directo</span>
                                     <span class="contact-card-val">+57 324 499 6830</span>
                                 </div>
+                                <span class="contact-card-badge status-online">En línea</span>
                             </a>
 
+                            <!-- 4. Correo Electrónico -->
                             <a href="mailto:tatanarias13@gmail.com" class="contact-card-item">
                                 <div class="contact-card-icon card-icon-email"><i class="fas fa-envelope"></i></div>
                                 <div class="contact-card-details">
-                                    <span class="contact-card-title">Correo</span>
+                                    <span class="contact-card-title">Correo Electrónico</span>
                                     <span class="contact-card-val">tatanarias13@gmail.com</span>
                                 </div>
                             </a>
+
+                            <!-- Canales Sociales Complementarios -->
+                            <div class="contact-secondary-socials">
+                                <span class="secondary-label">Otras redes:</span>
+                                <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-instagram" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i> Instagram
+                                </a>
+                                <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-facebook" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i> Facebook
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Formulario de Mensaje -->
                     <div class="contact-form-col reveal">
                         <form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/xbjnopzk" novalidate>
-                            <input type="hidden" name="_subject" value="Nuevo mensaje desde tatanarias.pages.dev">
+                            <input type="hidden" name="_subject" value="Nuevo mensaje desde portafolio de Erick Arias">
 
                             <div class="form-group">
                                 <label for="form-name">Nombre Completo <span class="required-star">*</span></label>
@@ -676,18 +708,18 @@
                     Full Stack Developer &amp; Founder de Futea Sports Tech.
                 </p>
                 <p class="footer-domain">
-                    <i class="fas fa-globe"></i> <a href="https://tatanarias.pages.dev" target="_blank" rel="noopener noreferrer">tatanarias.pages.dev</a>
+                    <i class="fas fa-globe"></i> <a href="https://portafolio-erick.parleycol.workers.dev" target="_blank" rel="noopener noreferrer">portafolio-erick.parleycol.workers.dev</a>
                 </p>
             </div>
 
             <div class="footer-social-col">
                 <div class="footer-social-links">
                     <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://github.com/ErickJarias" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20soluci%C3%B3n%20tecnol%C3%B3gica%20/%20Futea." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a href="mailto:tatanarias13@gmail.com" aria-label="Correo"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
         </div>
