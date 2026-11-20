@@ -678,6 +678,32 @@ button {
   mask-size: 100% 100%;
 }
 
+.hero-video-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0.001;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: transform 0.5s ease;
+  border-radius: 20px;
+}
+
+.hero-canvas:hover {
+  transform: scale(1.04);
+}
+
 .hero-video {
   width: 100%;
   height: 100%;

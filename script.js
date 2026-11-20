@@ -124,37 +124,135 @@ function initScrollSpy() {
 }
 
 /* ==========================================================================
-   3. Video de Perfil en Movimiento (Autoplay, Loop, Muted, Playsinline)
+   3. Video con Chroma Key en Tiempo Real (<canvas> + Despill suave)
    ========================================================================== */
 function initProfileVideo() {
   const video = document.getElementById("profileMedia");
+  const canvas = document.getElementById("chromaCanvas");
+  const fallbackImg = document.getElementById("heroFallbackImg");
+
   if (!video) return;
+
+  // Si no hay soporte para canvas 2d, mostrar fallback
+  if (!canvas || !canvas.getContext) {
+    if (fallbackImg) fallbackImg.style.display = "block";
+    return;
+  }
+
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  if (!ctx) return;
 
   video.muted = true;
   video.playsInline = true;
 
+  let isRendering = false;
+  let animFrameId = null;
+
+  // Ajustar dimensiones internas del canvas
+  const setupDimensions = () => {
+    const w = video.videoWidth || 440;
+    const h = video.videoHeight || 550;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+    }
+  };
+
+  // Render loop de Chroma Key
+  function processFrame() {
+    if (video.paused || video.ended || document.hidden) {
+      isRendering = false;
+      return;
+    }
+
+    setupDimensions();
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // 1. Dibujar fotograma actual
+    ctx.drawImage(video, 0, 0, width, height);
+
+    // 2. Extraer datos RGBA
+    const frame = ctx.getImageData(0, 0, width, height);
+    const data = frame.data;
+    const totalPixels = data.length;
+
+    // 3. Algoritmo de Chroma Key con Despill y Antialiasing
+    for (let i = 0; i < totalPixels; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+
+      const maxRB = r > b ? r : b;
+      const greenDiff = g - maxRB;
+
+      // Pantalla verde pura -> Transparente total
+      if (greenDiff > 32 && g > 75) {
+        data[i + 3] = 0;
+      }
+      // Borde de transición suave (antialiasing)
+      else if (greenDiff > 10 && g > 60) {
+        const factor = 1 - (greenDiff - 10) / 22;
+        data[i + 3] = Math.max(0, Math.min(255, Math.round(factor * 255)));
+        // Despill en borde: atenuar el reflejo verde
+        data[i + 1] = maxRB;
+      }
+      // Píxel de silueta: si hay tinte verde residual en cabello/ropa, neutralizar
+      else if (greenDiff > 0 && g > 95) {
+        data[i + 1] = Math.round(maxRB + greenDiff * 0.25);
+      }
+    }
+
+    // 4. Volcar fotograma procesado sin fondo verde
+    ctx.putImageData(frame, 0, 0);
+
+    // Bucle continuo sincronizado
+    if ("requestVideoFrameCallback" in video) {
+      video.requestVideoFrameCallback(processFrame);
+    } else {
+      animFrameId = requestAnimationFrame(processFrame);
+    }
+  }
+
+  const startLoop = () => {
+    if (!isRendering) {
+      isRendering = true;
+      processFrame();
+    }
+  };
+
+  video.addEventListener("play", startLoop);
+  video.addEventListener("loadedmetadata", setupDimensions);
+
+  // Intentar reproducir el video
   const playPromise = video.play();
   if (playPromise !== undefined) {
     playPromise.catch(() => {
-      // Reintentar en la primera interacción si el navegador tiene bloqueo estricto
-      const startPlay = () => {
-        video.play().catch(() => {});
-        window.removeEventListener("click", startPlay);
-        window.removeEventListener("scroll", startPlay);
-        window.removeEventListener("touchstart", startPlay);
+      const resume = () => {
+        video.play().then(startLoop).catch(() => {});
+        window.removeEventListener("click", resume);
+        window.removeEventListener("scroll", resume);
+        window.removeEventListener("touchstart", resume);
       };
-      window.addEventListener("click", startPlay, { once: true });
-      window.addEventListener("scroll", startPlay, { once: true, passive: true });
-      window.addEventListener("touchstart", startPlay, { once: true, passive: true });
+      window.addEventListener("click", resume, { once: true });
+      window.addEventListener("scroll", resume, { once: true, passive: true });
+      window.addEventListener("touchstart", resume, { once: true, passive: true });
     });
   }
 
-  // Permitir pausar/reanudar con un toque
-  video.addEventListener("click", () => {
+  // Clic en canvas alterna reproducción/pausa
+  canvas.addEventListener("click", () => {
     if (video.paused) {
-      video.play().catch(() => {});
+      video.play().then(startLoop).catch(() => {});
     } else {
       video.pause();
+    }
+  });
+
+  // Pausar procesamiento si la pestaña pasa a segundo plano
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && !video.paused) {
+      startLoop();
     }
   });
 }
