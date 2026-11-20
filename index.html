@@ -3,372 +3,712 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erick Arias - Full Stack Developer</title>
+    <title>Erick Arias | Full Stack Developer & Sports Tech Innovator</title>
+    <meta name="description" content="Portafolio de Erick Arias: Soluciones Tecnológicas para el Fútbol, Futea Score, Analítica de Datos & Growth Marketing y Desarrollo Full Stack.">
+    <meta name="author" content="Erick Arias">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Erick Arias | Full Stack Developer & Sports Tech Innovator">
+    <meta property="og:description" content="Soluciones para el Fútbol, Analítica de Datos y Desarrollo Web Full Stack.">
+    <meta property="og:image" content="EricArias.png">
+    <meta property="og:type" content="website">
+
+    <!-- Fuentes y librerías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-text"></span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Inicio</a></li>
-                <li><a href="#about" class="nav-link">Acerca</a></li>
-                <li><a href="#skills" class="nav-link">Habilidades</a></li>
-                <li><a href="#projects" class="nav-link">Proyectos</a></li>
-                <li><a href="#contact" class="nav-link">Contacto</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+    <!-- Barra de Navegación -->
+    <header>
+        <nav class="navbar" id="navbar" aria-label="Navegación principal">
+            <div class="nav-container">
+                <a href="#home" class="nav-logo" aria-label="Inicio Erick Arias">
+                    <span class="logo-code">&lt;</span><span class="logo-name">Erick Arias</span><span class="logo-code">/&gt;</span>
+                    <span class="logo-sub">Sports Tech</span>
+                </a>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="gradient-text">Erick Arias</span>
-                    </h1>
-                    <h2 class="hero-subtitle">Full Stack Developer</h2>
-                    <p class="hero-description">
-                        Creando experiencias digitales innovadoras con tecnologías modernas
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Inicio</a></li>
+                    <li><a href="#solutions" class="nav-link">Soluciones</a></li>
+                    <li><a href="#projects" class="nav-link">Proyectos</a></li>
+                    <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                    <li><a href="#about" class="nav-link">Sobre Mí</a></li>
+                    <li><a href="#contact" class="nav-link btn-nav-contact">Contacto</a></li>
+                </ul>
+
+                <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section con Formas Flotantes, Typewriter y Foto Circular con Glow -->
+        <section id="home" class="hero">
+            <!-- Animación de formas flotantes de fondo -->
+            <div class="hero-bg-animation" aria-hidden="true">
+                <div class="floating-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+
+            <div class="hero-container container">
+                <div class="hero-content">
+                    <div class="hero-text reveal">
+                        <div class="status-badge">
+                            <span class="status-dot"></span>
+                            <span>Disponible para proyectos, torneos &amp; consultoría</span>
+                        </div>
+
+                        <h1 class="hero-title">
+                            Hola, soy <span class="gradient-text">Erick Arias</span>
+                        </h1>
+                        
+                        <!-- Subtítulo con Efecto Mecanografiado Dinámico (Typewriter) -->
+                        <h2 class="hero-subtitle">
+                            Desarrollo <span id="typewriterText" class="typewriter-text"></span><span class="typewriter-cursor">|</span>
+                        </h2>
+
+                        <p class="hero-description">
+                            Fundador de <strong>Futea Sports Tech</strong>, desarrollador Full Stack y analista de datos. 
+                            Transformo el deporte y los negocios mediante software en tiempo real, marcadores digitales y estrategias cuantitativas de alto impacto.
+                        </p>
+
+                        <div class="hero-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Cúcuta, Norte de Santander, Colombia</span>
+                        </div>
+
+                        <div class="hero-buttons">
+                            <a href="#solutions" class="btn btn-primary">
+                                <i class="fas fa-bolt"></i>
+                                Ver Qué Hago
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <i class="fas fa-envelope"></i>
+                                Hablemos
+                            </a>
+                        </div>
+
+                        <!-- Redes Sociales Principales en orden estricto -->
+                        <div class="hero-socials">
+                            <span class="hero-socials-label">Conecta:</span>
+                            <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" class="social-chip chip-linkedin" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-github" aria-label="GitHub">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                            <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-instagram" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                            <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="social-chip chip-facebook" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Avatar en Movimiento / Foto Circular con Resplandor Animado -->
+                    <div class="hero-image reveal">
+                        <div class="image-container">
+                            <video id="profileMedia" class="profile-img profile-video" autoplay loop muted playsinline poster="EricArias.png">
+                                <source src="avatar-motion.mp4" type="video/mp4">
+                                <source src="avatar-motion.webm" type="video/webm">
+                                <img src="EricArias.png" alt="Erick Arias" class="profile-img" id="fallbackProfileImg">
+                            </video>
+                            <div class="image-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE SOLUCIONES (Enfoque Comercial: ¿Cómo te puedo ayudar?) -->
+        <section id="solutions" class="solutions section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Servicios &amp; Valor Comercial</span>
+                    <h2 class="section-title">¿Cómo Puedo Ayudarte?</h2>
+                    <div class="section-line"></div>
+                    <p class="section-desc">
+                        Soluciones tecnológicas a medida diseñadas para potenciar competiciones, acelerar empresas y crear productos digitales robustos.
                     </p>
-                    <div class="hero-location">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Cúcuta, Norte de Santander</span>
+                </div>
+
+                <div class="solutions-grid">
+                    <!-- Solución 1: Fútbol & Torneos -->
+                    <div class="solution-card spotlight-card reveal">
+                        <div class="solution-icon icon-sports">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <span class="solution-audience">Para Ligas, Clubes &amp; Torneos</span>
+                        <h3 class="solution-title">Sports Tech &amp; Marcadores en Vivo</h3>
+                        <p class="solution-desc">
+                            Digitalización total de competiciones de fútbol: software de marcadores interactivos (<strong>Futea Score</strong>), estadísticas en tiempo real vía WebSockets, cronómetros de campo y transmisiones multimedia profesionales.
+                        </p>
+                        <ul class="solution-features">
+                            <li><i class="fas fa-check"></i> Marcadores interactivos para pantallas y transmisiones</li>
+                            <li><i class="fas fa-check"></i> Sincronización instantánea con latencia &lt; 40ms</li>
+                            <li><i class="fas fa-check"></i> Estadísticas de goles, tarjetas, tiros y faltas en vivo</li>
+                            <li><i class="fas fa-check"></i> Producción audiovisual multicámara para partidos</li>
+                        </ul>
+                        <div class="solution-footer">
+                            <a href="#contact" class="btn-solution">
+                                Solicitar Demo de Futea <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i>
-                            Contactar
-                        </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            <i class="fas fa-code"></i>
-                            Ver Proyectos
-                        </a>
+
+                    <!-- Solución 2: Analítica & Growth -->
+                    <div class="solution-card spotlight-card reveal">
+                        <div class="solution-icon icon-data">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="solution-audience">Para Empresas &amp; Startups en Crecimiento</span>
+                        <h3 class="solution-title">Analítica de Datos &amp; Growth Marketing</h3>
+                        <p class="solution-desc">
+                            Transformación de datos crudos en decisiones estratégicas de negocio: modelado en SQL y Python, optimización de embudos de adquisición y retención, análisis de cohortes y diseño de dashboards ejecutivos.
+                        </p>
+                        <ul class="solution-features">
+                            <li><i class="fas fa-check"></i> Dashboards de KPIs en tiempo real (Power BI / Web)</li>
+                            <li><i class="fas fa-check"></i> Análisis de cohortes y optimización de retención</li>
+                            <li><i class="fas fa-check"></i> Cálculo preciso y optimización de CAC, LTV y ROI</li>
+                            <li><i class="fas fa-check"></i> Pipelines automatizados con Python y bases de datos SQL</li>
+                        </ul>
+                        <div class="solution-footer">
+                            <a href="#contact" class="btn-solution">
+                                Cotizar Consultoría de Datos <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Solución 3: Desarrollo Web Full Stack -->
+                    <div class="solution-card spotlight-card reveal">
+                        <div class="solution-icon icon-code">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="solution-audience">Para Negocios &amp; Proyectos Digitales</span>
+                        <h3 class="solution-title">Desarrollo Web Full Stack &amp; APIs</h3>
+                        <p class="solution-desc">
+                            Construcción de aplicaciones web modernas, rápidas y escalables: arquitecturas de backend seguras, endpoints RESTful, interfaces dinámicas y despliegue continuo en la nube sin fricciones.
+                        </p>
+                        <ul class="solution-features">
+                            <li><i class="fas fa-check"></i> Aplicaciones web interactivas (React / JavaScript ES6+)</li>
+                            <li><i class="fas fa-check"></i> Backends y APIs RESTful con Node.js y Express</li>
+                            <li><i class="fas fa-check"></i> Bases de datos relacionales optimizadas (MySQL / PostgreSQL)</li>
+                            <li><i class="fas fa-check"></i> Despliegue global en la nube (Cloudflare Pages / Vercel)</li>
+                        </ul>
+                        <div class="solution-footer">
+                            <a href="#contact" class="btn-solution">
+                                Iniciar Proyecto Web <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="image-container">
-                        <img src="EricArias.png" alt="Erick Arias" class="profile-img">
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
             </div>
-        </div>
-        <div class="hero-bg-animation">
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Acerca de Mí</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Desarrollador Full Stack con formación en desarrollo de software y multimedia, y experiencia en la creación de aplicaciones web completas, desde el frontend hasta el backend.
-Trabajo con tecnologías como JavaScript, Node.js, y frameworks modernos, integrando soluciones eficientes, escalables y centradas en el usuario.
-
-Además, cuento con estudios en Análisis de Datos y Big Data, lo que me permite aplicar enfoques basados en datos para la toma de decisiones, visualización de información y optimización de procesos.
-Me caracterizo por mi compromiso, adaptabilidad y pasión por construir herramientas tecnológicas con impacto real en el entorno social y productivo.
+        <!-- Proyectos Destacados (Con Filtro Interactivo y Spotlight) -->
+        <section id="projects" class="projects section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Portafolio</span>
+                    <h2 class="section-title">Creaciones &amp; Proyectos</h2>
+                    <div class="section-line"></div>
+                    <p class="section-desc">
+                        Soluciones en producción que respaldan mi experiencia técnica y comercial.
                     </p>
-                    <p>
-                        Poseo habilidades interpersonales que fomentan el trabajo en equipo, así como una mentalidad proactiva 
-                        orientada al aprendizaje constante y la innovación tecnológica.
-                    </p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">Años de Experiencia</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Proyectos Completados</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Tecnologías</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section class="experience">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Experiencia</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Tech Innovators Inc.</h3>
-                        <span class="timeline-date">2020 - Presente</span>
-                        <p>Desarrollo de aplicaciones web full-stack y liderazgo de proyectos tecnológicos.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <h3>Creative Solutions Co.</h3>
-                        <span class="timeline-date">2018 - 2020</span>
-                        <p>Desarrollo frontend y colaboración en proyectos de diseño web responsivo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Habilidades</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="skills-grid">
-                <div class="skills-category">
-                    <h3>Habilidades Técnicas</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>Programación</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>Bases de Datos</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-server"></i>
-                            <span>Backend Dev</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-cloud"></i>
-                            <span>Cloud Computing</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Control de Versiones</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skills-category">
-                    <h3>Habilidades Blandas</h3>
-                    <div class="skills-list">
-                        <div class="skill-item">
-                            <i class="fas fa-comments"></i>
-                            <span>Comunicación</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-users"></i>
-                            <span>Trabajo en Equipo</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Resolución de Problemas</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-microphone"></i>
-                            <span>Oratoria</span>
-                        </div>
-                        <div class="skill-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Gestión del Tiempo</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Proyectos Destacados</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/placeholder.svg?height=250&width=400" alt="EcoTrack">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>EcoTrack</h3>
-                        <p>Aplicación para rastrear la huella de carbono y promover un estilo de vida sostenible.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/placeholder.svg?height=250&width=400" alt="HealthHub">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>HealthHub</h3>
-                        <p>Plataforma web para insights de salud personalizados y seguimiento médico.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/placeholder.svg?height=250&width=400" alt="TravelMate">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
-                                <a href="#" class="project-link"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>TravelMate</h3>
-                        <p>Aplicación móvil para organizar viajes y obtener recomendaciones personalizadas.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">API REST</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Contacto</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>¡Hablemos!</h3>
-                    <p>
-                        Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades. 
-                        No dudes en contactarme y te responderé lo antes posible.
-                    </p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <i class="fas fa-envelope"></i>
-                            <span>tatanarias13@gmail.com</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fas fa-phone"></i>
-                            <span>+57 324 499 6830</span>
-                        </div>
-                        <div class="contact-method">
-                            <i class="fab fa-linkedin"></i>
-                            <span>https://www.linkedin.com/in/erick-arias-dev/</span>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Tu Nombre" required>
-                        <label for="name">Nombre</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Tu Email" required>
-                        <label for="email">Email</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Asunto" required>
-                        <label for="subject">Asunto</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Tu Mensaje" rows="5" required></textarea>
-                        <label for="message">Mensaje</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <i class="fas fa-paper-plane"></i>
-                        Enviar Mensaje
+                <!-- Filtros Interactivos -->
+                <div class="project-filters reveal" role="tablist" aria-label="Filtro de proyectos">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+                        <i class="fas fa-th-large"></i> Todos
                     </button>
-                </form>
-            </div>
-        </div>
-    </section>
+                    <button class="filter-btn" data-filter="sports-tech" role="tab" aria-selected="false">
+                        <i class="fas fa-futbol"></i> Sports Tech
+                    </button>
+                    <button class="filter-btn" data-filter="data" role="tab" aria-selected="false">
+                        <i class="fas fa-chart-bar"></i> Analítica &amp; Datos
+                    </button>
+                    <button class="filter-btn" data-filter="full-stack" role="tab" aria-selected="false">
+                        <i class="fas fa-code"></i> Full Stack
+                    </button>
+                </div>
 
-    <!-- Contact Messages Admin Panel -->
-    <section class="admin-panel" id="adminPanel" style="display: none;">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Panel de Administración - Mensajes</h2>
-                <div class="section-line"></div>
+                <!-- Grid de Tarjetas de Proyectos con Spotlight -->
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- 1. Futea Sports Tech -->
+                    <article class="project-card spotlight-card reveal" data-category="sports-tech full-stack">
+                        <div class="project-image-wrapper">
+                            <img src="assets/images/futea-platform.svg" alt="Futea Sports Tech Platform" class="project-img" loading="lazy">
+                            <div class="project-badge status-prod">
+                                <i class="fas fa-star"></i> Insignia
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category-tag">Sports Tech &bull; Ecosistema Deportivo</div>
+                            <h3 class="project-title">Futea Sports Tech Platform</h3>
+                            <p class="project-description">
+                                Plataforma integral para la cobertura, difusión y digitalización de torneos de fútbol base y profesional con herramientas audiovisuales y web.
+                            </p>
+                            <div class="project-metrics">
+                                <span><i class="fas fa-video"></i> Streaming 4K</span>
+                                <span><i class="fas fa-trophy"></i> +<span class="count-up" data-target="15">15</span> Torneos</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">WebSockets</span>
+                                <span class="tech-tag">APIs</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#contact" class="btn-card-link">Conocer Más <i class="fas fa-arrow-right"></i></a>
+                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 2. Futea Score -->
+                    <article class="project-card spotlight-card reveal" data-category="sports-tech full-stack">
+                        <div class="project-image-wrapper">
+                            <img src="assets/images/futea-score.svg" alt="Futea Score - Marcadores en tiempo real" class="project-img" loading="lazy">
+                            <div class="project-badge status-live">
+                                <i class="fas fa-broadcast-tower"></i> Live Realtime
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category-tag">Sports Tech &bull; Software en Tiempo Real</div>
+                            <h3 class="project-title">Futea Score</h3>
+                            <p class="project-description">
+                                Marcadores interactivos en tiempo real, cronómetros y estadísticas de partido en vivo con latencia mínima, optimizado para transmisiones y pantallas.
+                            </p>
+                            <div class="project-metrics">
+                                <span><i class="fas fa-tachometer-alt"></i> &lt;<span class="count-up" data-target="40">40</span>ms Latencia</span>
+                                <span><i class="fas fa-sync-alt"></i> 100% WebSockets</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">WebSockets</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">JavaScript ES6</span>
+                                <span class="tech-tag">CSS Grid</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#contact" class="btn-card-link">Ver Demo <i class="fas fa-arrow-right"></i></a>
+                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 3. Growth Marketing Analytics Dashboard -->
+                    <article class="project-card spotlight-card reveal" data-category="data">
+                        <div class="project-image-wrapper">
+                            <img src="assets/images/data-analytics.svg" alt="Dashboard de Growth Marketing" class="project-img" loading="lazy">
+                            <div class="project-badge status-case">
+                                <i class="fas fa-chart-line"></i> Analítica
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category-tag">Data Analytics &bull; Business Intelligence</div>
+                            <h3 class="project-title">Growth Marketing Analytics Dashboard</h3>
+                            <p class="project-description">
+                                Pipeline de datos y tablero para análisis de embudos de conversión, retención por cohortes y optimización de CAC/LTV en campañas de crecimiento.
+                            </p>
+                            <div class="project-metrics">
+                                <span><i class="fas fa-arrow-up"></i> +<span class="count-up" data-target="24">24</span>.8% Conversión</span>
+                                <span><i class="fas fa-database"></i> +<span class="count-up" data-target="180">180</span>K Eventos</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">SQL</span>
+                                <span class="tech-tag">Power BI</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#contact" class="btn-card-link">Ver Métricas <i class="fas fa-arrow-right"></i></a>
+                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4. Sports Performance Big Data -->
+                    <article class="project-card spotlight-card reveal" data-category="data sports-tech">
+                        <div class="project-image-wrapper">
+                            <img src="assets/images/sports-analytics.svg" alt="Sports Performance Analytics" class="project-img" loading="lazy">
+                            <div class="project-badge status-ai">
+                                <i class="fas fa-brain"></i> Big Data
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category-tag">Big Data &bull; Sports Science</div>
+                            <h3 class="project-title">Sports Performance Intelligence</h3>
+                            <p class="project-description">
+                                Modelo estadístico para el análisis físico de atletas: clustering de rendimiento, mapas de calor, sprints a alta velocidad y prevención de fatiga.
+                            </p>
+                            <div class="project-metrics">
+                                <span><i class="fas fa-running"></i> Carga Física</span>
+                                <span><i class="fas fa-project-diagram"></i> Clustering K-Means</span>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">NumPy</span>
+                                <span class="tech-tag">Scikit-learn</span>
+                                <span class="tech-tag">Data Viz</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="#contact" class="btn-card-link">Ver Análisis <i class="fas fa-arrow-right"></i></a>
+                                <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="btn-card-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-            <div class="admin-controls">
-                <button class="btn btn-secondary" onclick="toggleAdminPanel()">Cerrar Panel</button>
-                <button class="btn btn-danger" onclick="clearAllMessages()">Limpiar Todos</button>
+        </section>
+
+        <!-- Experiencia Profesional (3 Etapas Claras) -->
+        <section id="experience" class="experience section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Trayectoria</span>
+                    <h2 class="section-title">Experiencia Profesional</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="timeline">
+                    <!-- 1. Sports Tech -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot dot-sports"></div>
+                        <div class="timeline-content spotlight-card">
+                            <div class="timeline-header">
+                                <h3>Creador de Soluciones Tecnológicas en el Fútbol</h3>
+                                <span class="timeline-badge current">2023 - Presente</span>
+                            </div>
+                            <h4 class="timeline-company"><i class="fas fa-trophy"></i> Futea Sports Tech (Ex Favela Films)</h4>
+                            <p>
+                                Desarrollo de software para el fútbol competitivo y formativo. Creador de <strong>Futea Score</strong> 
+                                (marcadores y estadísticas en vivo vía WebSockets), digitalización de torneos y producción de transmisiones multimedia.
+                            </p>
+                            <div class="timeline-tags">
+                                <span>Fútbol Tech</span>
+                                <span>Futea Score</span>
+                                <span>WebSockets</span>
+                                <span>Streaming</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Analítica de Datos en Growth -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot dot-data"></div>
+                        <div class="timeline-content spotlight-card">
+                            <div class="timeline-header">
+                                <h3>Analista de Datos en Growth Marketing</h3>
+                                <span class="timeline-badge current">2022 - Presente</span>
+                            </div>
+                            <h4 class="timeline-company"><i class="fas fa-chart-line"></i> Growth &amp; Estrategia Cuantitativa</h4>
+                            <p>
+                                Modelado y extracción de datos en SQL y Python. Optimización de embudos de conversión, retención por cohortes, 
+                                análisis de CAC/LTV y tableros de control de KPIs para la toma de decisiones empresariales basadas en datos.
+                            </p>
+                            <div class="timeline-tags">
+                                <span>Python</span>
+                                <span>SQL</span>
+                                <span>Growth Analytics</span>
+                                <span>Cohortes</span>
+                                <span>Dashboards</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Industria de Hidrocarburos -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot dot-industry"></div>
+                        <div class="timeline-content spotlight-card">
+                            <div class="timeline-header">
+                                <h3>Operaciones &amp; Control Técnico de Procesos</h3>
+                                <span class="timeline-badge">Etapa Industrial</span>
+                            </div>
+                            <h4 class="timeline-company"><i class="fas fa-oil-well"></i> Industria de Hidrocarburos (Petróleo &amp; Gas)</h4>
+                            <p>
+                                Desempeño operativo en el sector hidrocarburos. Supervisión de procedimientos críticos, seguimiento de datos de campo, 
+                                aseguramiento de calidad y cumplimiento estricto de normas de seguridad industrial (HSE), forjando disciplina y rigor metódico.
+                            </p>
+                            <div class="timeline-tags">
+                                <span>Hidrocarburos</span>
+                                <span>Control de Procesos</span>
+                                <span>Variables Críticas</span>
+                                <span>Seguridad HSE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="messages-container" id="messagesContainer">
-                <!-- Los mensajes se cargarán aquí dinámicamente -->
+        </section>
+
+        <!-- Sobre Mí & Habilidades Compacto con Contadores Animados -->
+        <section id="about" class="about section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Perfil &amp; Competencias</span>
+                    <h2 class="section-title">Sobre Mí &amp; Áreas Clave</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Columna Izquierda: Breve Biografía -->
+                    <div class="about-text-col reveal">
+                        <p class="lead-text">
+                            <strong>Desarrollador Full Stack</strong> y <strong>Tecnólogo Multimedia</strong> con especialización en <strong>Análisis de Datos &amp; Big Data</strong>.
+                        </p>
+                        
+                        <div class="pillars-list">
+                            <div class="pillar-row">
+                                <div class="pillar-bullet bullet-sports"><i class="fas fa-futbol"></i></div>
+                                <div>
+                                    <strong>Fútbol &amp; Sports Tech:</strong> Fundador de <em>Futea Sports Tech</em>. Desarrollo de plataformas interactivas, marcadores en vivo (<em>Futea Score</em>) y transmisiones audiovisuales.
+                                </div>
+                            </div>
+
+                            <div class="pillar-row">
+                                <div class="pillar-bullet bullet-data"><i class="fas fa-chart-line"></i></div>
+                                <div>
+                                    <strong>Analítica en Growth Marketing:</strong> Modelado y análisis con Python y SQL, seguimiento de cohortes, métricas CAC/LTV y tableros de control cuantitativos.
+                                </div>
+                            </div>
+
+                            <div class="pillar-row">
+                                <div class="pillar-bullet bullet-oil"><i class="fas fa-oil-well"></i></div>
+                                <div>
+                                    <strong>Trayectoria en Hidrocarburos:</strong> Experiencia técnica en el sector industrial de petróleo y gas, cimentando una estricta disciplina operativa y resolución metódica.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Métricas con Contadores Animados (Count-Up) -->
+                        <div class="mini-metrics">
+                            <div class="mini-metric-item">
+                                <span class="mini-num count-up" data-target="3">3</span><span class="mini-plus">+</span>
+                                <span class="mini-lbl">Años de Exp.</span>
+                            </div>
+                            <div class="mini-metric-item">
+                                <span class="mini-num">Futea</span>
+                                <span class="mini-lbl">Sports Tech</span>
+                            </div>
+                            <div class="mini-metric-item">
+                                <span class="mini-num count-up" data-target="180">180</span><span class="mini-plus">K+</span>
+                                <span class="mini-lbl">Eventos Analizados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Stack de Habilidades Organizado -->
+                    <div class="skills-compact-col reveal">
+                        <div class="skill-category-card spotlight-card">
+                            <div class="cat-header">
+                                <i class="fas fa-laptop-code"></i>
+                                <h4>Desarrollo Web &amp; Full Stack</h4>
+                            </div>
+                            <div class="chips-container">
+                                <span class="skill-chip">HTML5 / CSS3</span>
+                                <span class="skill-chip">JavaScript (ES6+)</span>
+                                <span class="skill-chip">Node.js</span>
+                                <span class="skill-chip">Express</span>
+                                <span class="skill-chip">WebSockets</span>
+                                <span class="skill-chip">REST APIs</span>
+                                <span class="skill-chip">Git / GitHub</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category-card spotlight-card">
+                            <div class="cat-header">
+                                <i class="fas fa-chart-pie"></i>
+                                <h4>Analítica de Datos &amp; Big Data</h4>
+                            </div>
+                            <div class="chips-container">
+                                <span class="skill-chip">Python</span>
+                                <span class="skill-chip">Pandas / NumPy</span>
+                                <span class="skill-chip">SQL / MySQL</span>
+                                <span class="skill-chip">Growth Analytics</span>
+                                <span class="skill-chip">Dashboards BI</span>
+                                <span class="skill-chip">Visualización</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-category-card spotlight-card">
+                            <div class="cat-header">
+                                <i class="fas fa-trophy"></i>
+                                <h4>Sports Tech &amp; Multimedia</h4>
+                            </div>
+                            <div class="chips-container">
+                                <span class="skill-chip">Futea Score Realtime</span>
+                                <span class="skill-chip">Marcadores Digitales</span>
+                                <span class="skill-chip">Streaming Deportivo</span>
+                                <span class="skill-chip">Producción Audiovisual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Contacto Compacto y Funcional -->
+        <section id="contact" class="contact section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-tag">Conversemos</span>
+                    <h2 class="section-title">Iniciemos un Proyecto</h2>
+                    <div class="section-line"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Canales Directos en orden -->
+                    <div class="contact-info-col reveal">
+                        <h3>Canales Directos</h3>
+                        <p>
+                            ¿Tienes una idea en tecnología deportiva, desarrollo web o análisis de datos? Conéctate directamente conmigo:
+                        </p>
+
+                        <div class="contact-cards-list">
+                            <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                                <div class="contact-card-icon card-icon-linkedin"><i class="fab fa-linkedin-in"></i></div>
+                                <div class="contact-card-details">
+                                    <span class="contact-card-title">LinkedIn</span>
+                                    <span class="contact-card-val">in/erick-arias-dev</span>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                                <div class="contact-card-icon card-icon-github"><i class="fab fa-github"></i></div>
+                                <div class="contact-card-details">
+                                    <span class="contact-card-title">GitHub</span>
+                                    <span class="contact-card-val">@tatanarias13</span>
+                                </div>
+                            </a>
+
+                            <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                                <div class="contact-card-icon card-icon-instagram"><i class="fab fa-instagram"></i></div>
+                                <div class="contact-card-details">
+                                    <span class="contact-card-title">Instagram</span>
+                                    <span class="contact-card-val">@tatanarias13</span>
+                                </div>
+                            </a>
+
+                            <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                                <div class="contact-card-icon card-icon-facebook"><i class="fab fa-facebook-f"></i></div>
+                                <div class="contact-card-details">
+                                    <span class="contact-card-title">Facebook</span>
+                                    <span class="contact-card-val">Erick Arias</span>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20soluci%C3%B3n%20tecnol%C3%B3gica%20/%20Futea." target="_blank" rel="noopener noreferrer" class="contact-card-item">
+                                <div class="contact-card-icon card-icon-whatsapp"><i class="fab fa-whatsapp"></i></div>
+                                <div class="contact-card-details">
+                                    <span class="contact-card-title">WhatsApp Directo</span>
+                                    <span class="contact-card-val">+57 324 499 6830</span>
+                                </div>
+                            </a>
+
+                            <a href="mailto:tatanarias13@gmail.com" class="contact-card-item">
+                                <div class="contact-card-icon card-icon-email"><i class="fas fa-envelope"></i></div>
+                                <div class="contact-card-details">
+                                    <span class="contact-card-title">Correo</span>
+                                    <span class="contact-card-val">tatanarias13@gmail.com</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de Mensaje -->
+                    <div class="contact-form-col reveal">
+                        <form class="contact-form" id="contactForm" method="POST" action="https://formspree.io/f/xbjnopzk" novalidate>
+                            <input type="hidden" name="_subject" value="Nuevo mensaje desde tatanarias.pages.dev">
+
+                            <div class="form-group">
+                                <label for="form-name">Nombre Completo <span class="required-star">*</span></label>
+                                <input type="text" id="form-name" name="name" autocomplete="name" placeholder="Tu nombre" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-email">Correo Electrónico <span class="required-star">*</span></label>
+                                <input type="email" id="form-email" name="email" autocomplete="email" placeholder="tu-correo@ejemplo.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-subject">Asunto <span class="required-star">*</span></label>
+                                <input type="text" id="form-subject" name="subject" placeholder="Ej. Solución Futea / Proyecto Web" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-message">Mensaje <span class="required-star">*</span></label>
+                                <textarea id="form-message" name="message" rows="4" placeholder="Cuéntame sobre tus requerimientos u objetivos..." required></textarea>
+                            </div>
+
+                            <div id="formStatus" class="form-status-message" aria-live="polite"></div>
+
+                            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Enviar Mensaje</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2024 Erick Arias. Todos los derechos reservados.</p>
+        <div class="container footer-container">
+            <div class="footer-left">
+                <div class="footer-brand">
+                    <span class="logo-code">&lt;</span><span class="logo-name">Erick Arias</span><span class="logo-code">/&gt;</span>
                 </div>
-                <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <p class="footer-tagline">
+                    Full Stack Developer &amp; Founder de Futea Sports Tech.
+                </p>
+                <p class="footer-domain">
+                    <i class="fas fa-globe"></i> <a href="https://tatanarias.pages.dev" target="_blank" rel="noopener noreferrer">tatanarias.pages.dev</a>
+                </p>
+            </div>
+
+            <div class="footer-social-col">
+                <div class="footer-social-links">
+                    <a href="https://www.linkedin.com/in/erick-arias-dev/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/tatanarias13" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20soluci%C3%B3n%20tecnol%C3%B3gica%20/%20Futea." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:tatanarias13@gmail.com" aria-label="Correo"><i class="fas fa-envelope"></i></a>
                 </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Erick Arias. Todos los derechos reservados &bull; Cúcuta, Colombia.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Admin Access Button (Hidden) -->
-    <div class="admin-access" onclick="showAdminAccess()" title="Panel de Administración">
-        <i class="fas fa-cog"></i>
-    </div>
+    <!-- BOTÓN FLOTANTE DIRECTO DE WHATSAPP CON PULSO -->
+    <a href="https://wa.me/573244996830?text=Hola%20Erick,%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20hablar%20sobre%20una%20soluci%C3%B3n%20tecnol%C3%B3gica%20/%20Futea." target="_blank" rel="noopener noreferrer" class="whatsapp-floating" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">¿Hablamos de tu proyecto?</span>
+    </a>
+
+    <!-- Botón Volver Arriba -->
+    <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

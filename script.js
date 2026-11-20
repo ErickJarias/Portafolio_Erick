@@ -1,368 +1,307 @@
-// Variables globales
-let messages = JSON.parse(localStorage.getItem("contactMessages")) || []
+/**
+ * PORTAFOLIO ERICK ARIAS - JAVASCRIPT PRINCIPAL
+ * Animaciones: Typewriter, Spotlight Glow, Count-Up, Scroll Reveal, Filtros y Formulario
+ */
 
-// Inicialización cuando se carga la página
 document.addEventListener("DOMContentLoaded", () => {
-  initializeApp()
-})
+  initNavigation();
+  initProfileVideo();
+  initTypewriter();
+  initSpotlightGlow();
+  initCountUp();
+  initScrollAnimations();
+  initProjectFilter();
+  initContactForm();
+  initBackToTop();
+});
 
-// Función principal de inicialización
-function initializeApp() {
-  setupNavigation()
-  setupContactForm()
-  setupScrollAnimations()
-  loadMessages()
-}
+/* 1. Video de Perfil en Movimiento (Autoplay & Loop) */
+function initProfileVideo() {
+  const video = document.getElementById("profileMedia");
+  if (!video) return;
 
-// Configuración de navegación
-function setupNavigation() {
-  const hamburger = document.querySelector(".hamburger")
-  const navMenu = document.querySelector(".nav-menu")
-  const navLinks = document.querySelectorAll(".nav-link")
+  // Asegurar reproducción automática silenciada
+  video.muted = true;
+  video.playsInline = true;
 
-  // Toggle del menú hamburguesa
-  if (hamburger) {
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active")
-      navMenu.classList.toggle("active")
-    })
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // Si el navegador bloquea autoplay, se activa con el primer scroll o click
+      const startPlay = () => {
+        video.play();
+        window.removeEventListener("click", startPlay);
+        window.removeEventListener("scroll", startPlay);
+      };
+      window.addEventListener("click", startPlay, { once: true });
+      window.addEventListener("scroll", startPlay, { once: true });
+    });
   }
 
-  // Cerrar menú al hacer click en un enlace
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active")
-      navMenu.classList.remove("active")
-    })
-  })
-
-  // Smooth scrolling para enlaces internos
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault()
-      const targetId = link.getAttribute("href")
-      const targetSection = document.querySelector(targetId)
-
-      if (targetSection) {
-        const offsetTop = targetSection.offsetTop - 80
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        })
-      }
-    })
-  })
-
-  // Cambiar estilo de navbar al hacer scroll
-  window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar")
-    if (window.scrollY > 100) {
-      navbar.style.background = "rgba(10, 10, 10, 0.98)"
+  // Permitir pausar/reanudar haciendo clic en el video
+  video.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
     } else {
-      navbar.style.background = "rgba(10, 10, 10, 0.95)"
+      video.pause();
     }
-  })
+  });
 }
 
-// Configuración del formulario de contacto
-function setupContactForm() {
-  const contactForm = document.getElementById("contactForm")
+/* 1. Navegación Móvil y Navbar con Scroll */
+function initNavigation() {
+  const hamburger = document.getElementById("hamburgerBtn");
+  const navMenu = document.getElementById("navMenu");
+  const navbar = document.getElementById("navbar");
+  const navLinks = document.querySelectorAll(".nav-link");
 
-  if (contactForm) {
-    contactForm.addEventListener("submit", handleFormSubmit)
-  }
-}
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      const isExpanded = hamburger.getAttribute("aria-expanded") === "true";
+      hamburger.setAttribute("aria-expanded", !isExpanded);
+      navMenu.classList.toggle("open");
+    });
 
-// Manejar envío del formulario
-function handleFormSubmit(e) {
-  e.preventDefault()
-
-  const formData = new FormData(e.target)
-  const messageData = {
-    id: Date.now(),
-    name: formData.get("name"),
-    email: formData.get("email"),
-    subject: formData.get("subject"),
-    message: formData.get("message"),
-    date: new Date().toLocaleString("es-ES"),
-    timestamp: Date.now(),
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.setAttribute("aria-expanded", "false");
+        navMenu.classList.remove("open");
+      });
+    });
   }
 
-  // Validar datos
-  if (!validateFormData(messageData)) {
-    showNotification("Por favor, completa todos los campos correctamente.", "error")
-    return
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 30) {
+      navbar?.classList.add("scrolled");
+    } else {
+      navbar?.classList.remove("scrolled");
+    }
+  });
+}
+
+/* 2. Efecto Mecanografiado Dinámico (Typewriter Effect) */
+function initTypewriter() {
+  const el = document.getElementById("typewriterText");
+  if (!el) return;
+
+  const phrases = [
+    "soluciones tecnológicas para el fútbol y torneos.",
+    "dashboards y analítica en Growth Marketing.",
+    "plataformas web Full Stack y software a medida.",
+    "ecosistemas digitales con Futea Sports Tech."
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 70;
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+      el.textContent = currentPhrase.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 35;
+    } else {
+      el.textContent = currentPhrase.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 70;
+    }
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      // Pausa al terminar de escribir la frase
+      isDeleting = true;
+      typingSpeed = 1800;
+    } else if (isDeleting && charIndex === 0) {
+      // Pasar a la siguiente frase
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      typingSpeed = 400;
+    }
+
+    setTimeout(type, typingSpeed);
   }
 
-  // Guardar mensaje
-  saveMessage(messageData)
-
-  // Limpiar formulario
-  e.target.reset()
-
-  // Mostrar confirmación
-  showNotification("¡Mensaje enviado correctamente! Te responderé pronto.", "success")
-
-  // Actualizar panel de admin si está visible
-  if (document.getElementById("adminPanel").style.display !== "none") {
-    loadMessages()
-  }
+  type();
 }
 
-// Validar datos del formulario
-function validateFormData(data) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+/* 3. Efecto Spotlight (Iluminación que sigue al Cursor en las Tarjetas) */
+function initSpotlightGlow() {
+  const cards = document.querySelectorAll(".spotlight-card");
+  if (!cards.length) return;
 
-  return (
-    data.name.trim().length >= 2 &&
-    emailRegex.test(data.email) &&
-    data.subject.trim().length >= 3 &&
-    data.message.trim().length >= 10
-  )
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+    });
+  });
 }
 
-// Guardar mensaje en localStorage
-function saveMessage(messageData) {
-  messages.unshift(messageData) // Agregar al inicio del array
-  localStorage.setItem("contactMessages", JSON.stringify(messages))
+/* 4. Contadores Numéricos Animados (Count-Up) */
+function initCountUp() {
+  const counters = document.querySelectorAll(".count-up");
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute("data-target"), 10) || 0;
+          let current = 0;
+          const step = Math.ceil(target / 45) || 1;
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              el.textContent = target;
+              clearInterval(interval);
+            } else {
+              el.textContent = current;
+            }
+          }, 30);
+          obs.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  counters.forEach((c) => observer.observe(c));
 }
 
-// Cargar mensajes en el panel de administración
-function loadMessages() {
-  const messagesContainer = document.getElementById("messagesContainer")
+/* 5. Animaciones de Entrada con Scroll (Reveal) */
+function initScrollAnimations() {
+  const reveals = document.querySelectorAll(".reveal");
+  if (!reveals.length) return;
 
-  if (!messagesContainer) return
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+  );
 
-  if (messages.length === 0) {
-    messagesContainer.innerHTML = `
-            <div class="no-messages">
-                <p style="text-align: center; color: var(--text-muted); padding: 2rem;">
-                    No hay mensajes aún.
-                </p>
-            </div>
-        `
-    return
-  }
-
-  messagesContainer.innerHTML = messages
-    .map(
-      (message) => `
-        <div class="message-card" data-id="${message.id}">
-            <div class="message-header">
-                <div class="message-info">
-                    <div class="message-name">${escapeHtml(message.name)}</div>
-                    <div class="message-email">${escapeHtml(message.email)}</div>
-                    <div class="message-date">${message.date}</div>
-                </div>
-                <button class="delete-message" onclick="deleteMessage(${message.id})">
-                    <i class="fas fa-trash"></i> Eliminar
-                </button>
-            </div>
-            <div class="message-subject">
-                <strong>Asunto:</strong> ${escapeHtml(message.subject)}
-            </div>
-            <div class="message-content">
-                ${escapeHtml(message.message).replace(/\n/g, "<br>")}
-            </div>
-        </div>
-    `,
-    )
-    .join("")
+  reveals.forEach((el) => observer.observe(el));
 }
 
-// Eliminar mensaje específico
-function deleteMessage(messageId) {
-  if (confirm("¿Estás seguro de que quieres eliminar este mensaje?")) {
-    messages = messages.filter((message) => message.id !== messageId)
-    localStorage.setItem("contactMessages", JSON.stringify(messages))
-    loadMessages()
-    showNotification("Mensaje eliminado correctamente.", "success")
-  }
+/* 6. Filtro Interactivo de Proyectos */
+function initProjectFilter() {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  if (!filterButtons.length || !projectCards.length) return;
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+
+      const filterValue = btn.getAttribute("data-filter");
+
+      projectCards.forEach((card) => {
+        const categories = card.getAttribute("data-category") || "";
+
+        if (filterValue === "all" || categories.includes(filterValue)) {
+          card.classList.remove("hidden");
+          card.style.opacity = "0";
+          card.style.transform = "translateY(12px)";
+          setTimeout(() => {
+            card.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }, 30);
+        } else {
+          card.classList.add("hidden");
+        }
+      });
+    });
+  });
 }
 
-// Limpiar todos los mensajes
-function clearAllMessages() {
-  if (confirm("¿Estás seguro de que quieres eliminar TODOS los mensajes? Esta acción no se puede deshacer.")) {
-    messages = []
-    localStorage.removeItem("contactMessages")
-    loadMessages()
-    showNotification("Todos los mensajes han sido eliminados.", "success")
-  }
-}
+/* 7. Formulario de Contacto Funcional & Accesible */
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
+  const submitBtn = document.getElementById("submitBtn");
 
-// Mostrar acceso al panel de administración
-function showAdminAccess() {
-  const password = prompt("Ingresa la contraseña de administrador:")
+  if (!form || !statusEl) return;
 
-  // Contraseña simple para demo (en producción usar autenticación real)
-  if (password === "admin123") {
-    toggleAdminPanel()
-  } else if (password !== null) {
-    showNotification("Contraseña incorrecta.", "error")
-  }
-}
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-// Toggle del panel de administración
-function toggleAdminPanel() {
-  const adminPanel = document.getElementById("adminPanel")
+    const name = form.querySelector("#form-name")?.value.trim();
+    const email = form.querySelector("#form-email")?.value.trim();
+    const message = form.querySelector("#form-message")?.value.trim();
 
-  if (adminPanel.style.display === "none" || !adminPanel.style.display) {
-    adminPanel.style.display = "block"
-    loadMessages()
-    // Scroll al panel
-    adminPanel.scrollIntoView({ behavior: "smooth" })
-  } else {
-    adminPanel.style.display = "none"
-  }
-}
+    if (!name || !email || !message) {
+      showStatus("Por favor completa los campos requeridos.", "error");
+      return;
+    }
 
-// Mostrar notificaciones
-function showNotification(message, type = "info") {
-  // Crear elemento de notificación
-  const notification = document.createElement("div")
-  notification.className = `notification notification-${type}`
-  notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas fa-${type === "success" ? "check-circle" : type === "error" ? "exclamation-circle" : "info-circle"}"></i>
-            <span>${message}</span>
-        </div>
-    `
+    const originalBtn = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+    statusEl.style.display = "none";
 
-  // Estilos de la notificación
-  notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: ${type === "success" ? "#10b981" : type === "error" ? "#ef4444" : "#3b82f6"};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        z-index: 10000;
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
-        max-width: 350px;
-    `
-
-  // Agregar al DOM
-  document.body.appendChild(notification)
-
-  // Animar entrada
-  setTimeout(() => {
-    notification.style.transform = "translateX(0)"
-  }, 100)
-
-  // Remover después de 5 segundos
-  setTimeout(() => {
-    notification.style.transform = "translateX(400px)"
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification)
-      }
-    }, 300)
-  }, 5000)
-}
-
-// Configurar animaciones de scroll
-function setupScrollAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in-up")
-      }
-    })
-  }, observerOptions)
-
-  // Observar elementos para animación
-  const animatedElements = document.querySelectorAll(".project-card, .skill-item, .timeline-item, .stat-item")
-  animatedElements.forEach((el) => observer.observe(el))
-}
-
-// Función para escapar HTML (prevenir XSS)
-function escapeHtml(text) {
-  const map = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;",
-  }
-  return text.replace(/[&<>"']/g, (m) => map[m])
-}
-
-// Funciones de utilidad para estadísticas
-function getMessageStats() {
-  const today = new Date()
-  const thisMonth = messages.filter((msg) => {
-    const msgDate = new Date(msg.timestamp)
-    return msgDate.getMonth() === today.getMonth() && msgDate.getFullYear() === today.getFullYear()
-  })
-
-  return {
-    total: messages.length,
-    thisMonth: thisMonth.length,
-    lastMessage: messages.length > 0 ? messages[0].date : "Ninguno",
-  }
-}
-
-// Exportar datos (para backup)
-function exportMessages() {
-  const dataStr = JSON.stringify(messages, null, 2)
-  const dataBlob = new Blob([dataStr], { type: "application/json" })
-  const url = URL.createObjectURL(dataBlob)
-
-  const link = document.createElement("a")
-  link.href = url
-  link.download = `mensajes-contacto-${new Date().toISOString().split("T")[0]}.json`
-  link.click()
-
-  URL.revokeObjectURL(url)
-  showNotification("Mensajes exportados correctamente.", "success")
-}
-
-// Importar datos
-function importMessages(event) {
-  const file = event.target.files[0]
-  if (!file) return
-
-  const reader = new FileReader()
-  reader.onload = (e) => {
     try {
-      const importedMessages = JSON.parse(e.target.result)
-      if (Array.isArray(importedMessages)) {
-        messages = importedMessages
-        localStorage.setItem("contactMessages", JSON.stringify(messages))
-        loadMessages()
-        showNotification("Mensajes importados correctamente.", "success")
+      const formData = new FormData(form);
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        showStatus("¡Mensaje enviado con éxito! Erick te responderá pronto.", "success");
+        form.reset();
       } else {
-        throw new Error("Formato de archivo inválido")
+        throw new Error("Error en servidor");
       }
-    } catch (error) {
-      showNotification("Error al importar mensajes. Verifica el formato del archivo.", "error")
+    } catch {
+      showStatus(
+        "No se pudo enviar automáticamente. Por favor escríbeme directamente a tatanarias13@gmail.com o a WhatsApp.",
+        "error"
+      );
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtn;
     }
+  });
+
+  function showStatus(msg, type) {
+    statusEl.textContent = msg;
+    statusEl.className = `form-status-message ${type}`;
+    statusEl.style.display = "block";
   }
-  reader.readAsText(file)
 }
 
-// Función para debugging (solo en desarrollo)
-function debugInfo() {
-  console.log("=== DEBUG INFO ===")
-  console.log("Total messages:", messages.length)
-  console.log("Messages:", messages)
-  console.log("Stats:", getMessageStats())
-  console.log("==================")
-}
+/* 8. Botón Volver Arriba */
+function initBackToTop() {
+  const btn = document.getElementById("backToTop");
+  if (!btn) return;
 
-// Hacer algunas funciones globales para uso en HTML
-window.deleteMessage = deleteMessage
-window.clearAllMessages = clearAllMessages
-window.showAdminAccess = showAdminAccess
-window.toggleAdminPanel = toggleAdminPanel
-window.exportMessages = exportMessages
-window.importMessages = importMessages
-window.debugInfo = debugInfo
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 350) {
+      btn.classList.add("visible");
+    } else {
+      btn.classList.remove("visible");
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}

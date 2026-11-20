@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="code-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070d19"/>
+      <stop offset="100%" stop-color="#02050e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#code-bg)"/>
+  
+  <!-- Code Editor Window -->
+  <g transform="translate(80, 50)">
+    <rect width="640" height="340" rx="14" fill="#0f172a" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+    <rect width="640" height="40" rx="14" fill="#1e293b"/>
+    <circle cx="25" cy="20" r="6" fill="#ef4444"/>
+    <circle cx="45" cy="20" r="6" fill="#f59e0b"/>
+    <circle cx="65" cy="20" r="6" fill="#10b981"/>
+    <text x="320" y="25" text-anchor="middle" font-family="monospace" font-size="12" fill="#94a3b8">api-server.ts &bull; REST &amp; WebSocket Gateway</text>
+    
+    <!-- Code lines -->
+    <g transform="translate(30, 70)" font-family="monospace" font-size="13">
+      <text x="0" y="0" fill="#f43f5e">import</text>
+      <text x="55" y="0" fill="#f8fafc">{ createServer } from</text>
+      <text x="215" y="0" fill="#38bdf8">'@futea/engine'</text>
+      
+      <text x="0" y="30" fill="#f43f5e">const</text>
+      <text x="45" y="30" fill="#38bdf8">app</text>
+      <text x="75" y="30" fill="#f8fafc">= express();</text>
+      
+      <text x="0" y="60" fill="#f43f5e">app</text>
+      <text x="25" y="60" fill="#f8fafc">.use(cors())</text>
+      <text x="120" y="60" fill="#f8fafc">.use(express.json());</text>
+      
+      <text x="0" y="100" fill="#64748b">// Realtime tournament match streaming</text>
+      <text x="0" y="130" fill="#38bdf8">app</text>
+      <text x="25" y="130" fill="#f8fafc">.get(</text>
+      <text x="60" y="130" fill="#10b981">'/api/matches/live'</text>
+      <text x="210" y="130" fill="#f8fafc">, async (req, res) =&gt; {</text>
+      <text x="20" y="160" fill="#f43f5e">  const</text>
+      <text x="70" y="160" fill="#f8fafc">data = await MatchService.getActiveFeed();</text>
+      <text x="20" y="190" fill="#f43f5e">  return</text>
+      <text x="80" y="190" fill="#f8fafc">res.json({ status: 200, payload: data });</text>
+      <text x="0" y="220" fill="#f8fafc">});</text>
+    </g>
+  </g>
+</svg>
