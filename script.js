@@ -5,6 +5,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  initThemeToggle();
   initNavigation();
   initScrollSpy();
   initProfileVideo();
@@ -656,4 +657,47 @@ function initTimelineProgress() {
   window.addEventListener("scroll", updateProgress, { passive: true });
   window.addEventListener("resize", updateProgress, { passive: true });
   updateProgress();
+}
+
+/* ==========================================================================
+   16. Sistema Dual de Tema (Modo Claro Ejecutivo y Modo Oscuro Carbón)
+   ========================================================================== */
+function initThemeToggle() {
+  const toggleBtn = document.getElementById("themeToggleBtn");
+  const html = document.documentElement;
+
+  // Sincronizar estado inicial de aria-label según el tema activo
+  const updateAriaLabel = (theme) => {
+    if (!toggleBtn) return;
+    if (theme === "dark") {
+      toggleBtn.setAttribute("aria-label", "Cambiar a modo claro");
+      toggleBtn.setAttribute("title", "Cambiar a modo claro");
+    } else {
+      toggleBtn.setAttribute("aria-label", "Cambiar a modo oscuro");
+      toggleBtn.setAttribute("title", "Cambiar a modo oscuro");
+    }
+  };
+
+  const currentTheme = localStorage.getItem("theme") || "light";
+  if (currentTheme === "dark") {
+    html.setAttribute("data-theme", "dark");
+  } else {
+    html.removeAttribute("data-theme");
+  }
+  updateAriaLabel(currentTheme);
+
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener("click", () => {
+    const isDark = html.getAttribute("data-theme") === "dark";
+    if (isDark) {
+      html.removeAttribute("data-theme");
+      localStorage.setItem("theme", "light");
+      updateAriaLabel("light");
+    } else {
+      html.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      updateAriaLabel("dark");
+    }
+  });
 }
