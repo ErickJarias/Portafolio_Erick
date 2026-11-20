@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initProjectFilter();
   initProjectImageFallbacks();
   initMatchClock();
+  initSportsMicroUpdates();
   initChartAnimation();
+  initTimelineProgress();
   initContactForm();
   initBackToTop();
 });
@@ -354,7 +356,7 @@ function initCountUp() {
           const timer = setInterval(() => {
             currentStep++;
             const progress = currentStep / totalSteps;
-            // Easing suave cuadrático hacia el final
+            // Easing suave cubic-bezier hacia el final
             const easeOut = 1 - Math.pow(1 - progress, 3);
             const currentVal = target * easeOut;
 
@@ -370,10 +372,14 @@ function initCountUp() {
         }
       });
     },
-    { threshold: 0.25 }
+    { threshold: 0.2 }
   );
 
-  counters.forEach((c) => observer.observe(c));
+  counters.forEach((c) => {
+    const decimals = parseInt(c.getAttribute("data-decimals") || "0", 10);
+    c.textContent = decimals > 0 ? (0).toFixed(decimals) : "0";
+    observer.observe(c);
+  });
 }
 
 /* ==========================================================================
@@ -559,6 +565,7 @@ function initMatchClock() {
    ========================================================================== */
 function initChartAnimation() {
   const chartPath = document.querySelector(".chart-line-anim");
+  const chartContainer = document.querySelector(".chart-container");
   const chartWidget = document.querySelector(".widget-analytics");
 
   if (!chartPath || !chartWidget) return;
@@ -568,12 +575,85 @@ function initChartAnimation() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           chartPath.classList.add("animated");
+          chartContainer?.classList.add("active-chart");
           observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.3 }
+    { threshold: 0.25 }
   );
 
   observer.observe(chartWidget);
+}
+
+/* ==========================================================================
+   14. Micro-actualizaciones Dinámicas en Sports Tech
+   ========================================================================== */
+function initSportsMicroUpdates() {
+  const scoreboard = document.getElementById("scoreboardDisplay");
+  const tickerText = document.getElementById("tickerContent");
+  if (!scoreboard || !tickerText) return;
+
+  const events = [
+    "Jornada 7 • Min 64' • Marcador Futea Score",
+    "GOL Erick Arias • 64' • Asistencia Directa",
+    "Presión Alta LOC (68% Posesión en Vivo)",
+    "Tiro a puerta VIS • Min 65' • Parada Clave",
+  ];
+
+  let eventIndex = 0;
+  setInterval(() => {
+    eventIndex = (eventIndex + 1) % events.length;
+    scoreboard.classList.add("micro-update-flash");
+    setTimeout(() => scoreboard.classList.remove("micro-update-flash"), 600);
+
+    tickerText.style.opacity = "0";
+    setTimeout(() => {
+      tickerText.textContent = events[eventIndex];
+      tickerText.style.opacity = "1";
+    }, 250);
+  }, 4500);
+}
+
+/* ==========================================================================
+   15. Línea de Tiempo Progresiva en Experiencia (Scroll Driven)
+   ========================================================================== */
+function initTimelineProgress() {
+  const timeline = document.getElementById("timelineContainer");
+  const progressLine = document.getElementById("timelineProgress");
+  const dots = document.querySelectorAll(".timeline-dot");
+
+  if (!timeline || !progressLine || !dots.length) return;
+
+  const updateProgress = () => {
+    const rect = timeline.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Zona activa: desde que la parte superior de la timeline llega al 65% de la pantalla
+    const triggerPoint = windowHeight * 0.65;
+    const timelineTop = rect.top;
+    const timelineHeight = rect.height;
+
+    let progress = 0;
+    if (timelineTop < triggerPoint) {
+      progress = (triggerPoint - timelineTop) / timelineHeight;
+      progress = Math.min(Math.max(progress, 0), 1);
+    }
+
+    progressLine.style.height = `${(progress * 100).toFixed(1)}%`;
+
+    // Iluminar nodos al alcanzarlos
+    dots.forEach((dot) => {
+      const dotRect = dot.getBoundingClientRect();
+      if (dotRect.top < triggerPoint + 10) {
+        dot.classList.add("active-node");
+      } else {
+        dot.classList.remove("active-node");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress, { passive: true });
+  updateProgress();
 }
