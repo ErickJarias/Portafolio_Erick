@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initProjectFilter();
   initProjectImageFallbacks();
+  initMatchClock();
+  initChartAnimation();
   initContactForm();
   initBackToTop();
 });
@@ -529,4 +531,49 @@ function initBackToTop() {
   btn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+}
+
+/* ==========================================================================
+   12. Mini-Widget Sports Tech: Cronómetro Activo en Tiempo Real
+   ========================================================================== */
+function initMatchClock() {
+  const clockEl = document.getElementById("matchClock");
+  if (!clockEl) return;
+
+  // Iniciar en 64 minutos 12 segundos (3852 segundos)
+  let totalSeconds = 64 * 60 + 12;
+
+  const updateClock = () => {
+    totalSeconds++;
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    clockEl.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  // Actualizar cada segundo
+  setInterval(updateClock, 1000);
+}
+
+/* ==========================================================================
+   13. Mini-Widget Analítica: Animación SVG al Entrar en Pantalla
+   ========================================================================== */
+function initChartAnimation() {
+  const chartPath = document.querySelector(".chart-line-anim");
+  const chartWidget = document.querySelector(".widget-analytics");
+
+  if (!chartPath || !chartWidget) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          chartPath.classList.add("animated");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  observer.observe(chartWidget);
 }
