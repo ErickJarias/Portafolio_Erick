@@ -56,7 +56,7 @@ function initNavigation() {
 }
 
 /* ==========================================================================
-   2. Scroll Spy con IntersectionObserver (Línea naranja indicadora dinámica)
+   2. Scroll Spy con IntersectionObserver (Línea verde esmeralda indicadora)
    ========================================================================== */
 function initScrollSpy() {
   const sections = document.querySelectorAll("section[id]");
